@@ -1,0 +1,86 @@
+.baseDiv {
+  background-color: value($background-primary, normal);
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+body, #main {
+  background-color: #680606;
+  height: 100%;
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0px;
+}
+
+h1 {
+  font-size: 50px;
+  color: white;
+  margin: 5px;
+  letter-spacing: 15px;
+}
+
+h2 {
+  color: white;
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.button {
+  text-decoration: none;
+  padding: 15px;
+  border: 1px solid grey;
+}
+
+.button:hover {
+  background-color: darkred;
+  border: 1px solid darkred;
+
+}
+
+.nav {
+  width: 100%;
+}
+
+.user-name {
+  margin-bottom: 2px;
+}
+
+input {
+  display: inherit;
+  margin: 3%;
+  height: 30px;
+  width: 65%;
+  background-color: transparent;
+  color: white;
+}
+
+button {
+  display: inherit;
+  text-align: center;
+  height: 27px;
+  width: 57px;
+  background-color: transparent;
+  color: white;
+  justify-content: center;
+  margin: 10px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15%;
+  margin:6%;
+  background-color: rgba(0, 0, 0, 0.65);
+}
+
+input {
+  padding-left: 5px;
+}
