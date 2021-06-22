@@ -103,16 +103,25 @@ const ChartView = (props: any) => {
     >
       <Chart
         id={1}
-        height={600}
-        yExtents={(d: any) => [d.high, d.low]}
-        padding={{ top: 10, right: 0, bottom: 20, left: 0 }}
+        height={550}
+        yPan
+        yExtents={[(d: any) => [d.high, d.low], ema20.accessor(), ema50.accessor()]}
+        padding={{ top: 10, bottom: 20 }}
       >
+        <XAxis axisAt="bottom" orient="bottom" />
+        <XAxis axisAt="top" orient="top" flexTicks />
         <YAxis axisAt="right" orient="right" ticks={5} />
-        <XAxis axisAt="bottom" orient="bottom" showTicks={false} outerTickSize={0} />
-        <MouseCoordinateY at="right" orient="right" displayFormat={format('.2f')} />
 
         <CandlestickSeries />
 
+        <LineSeries yAccessor={ema20.accessor()} stroke={ema20.stroke()} highlightOnHover />
+        <LineSeries yAccessor={ema50.accessor()} stroke={ema50.stroke()} highlightOnHover />
+
+        <CurrentCoordinate yAccessor={ema20.accessor()} fill={ema20.stroke()} />
+        <CurrentCoordinate yAccessor={ema50.accessor()} fill={ema50.stroke()} />
+
+        <EdgeIndicator itemType="last" orient="right" edgeAt="right" yAccessor={ema20.accessor()} fill={ema20.fill()} />
+        <EdgeIndicator itemType="last" orient="right" edgeAt="right" yAccessor={ema50.accessor()} fill={ema50.fill()} />
         <EdgeIndicator
           itemType="last"
           orient="right"
@@ -120,7 +129,40 @@ const ChartView = (props: any) => {
           yAccessor={(d: any) => d.close}
           fill={(d: any) => (d.close > d.open ? '#6BA583' : '#FF0000')}
         />
-        <OHLCTooltip origin={[-40, -10]} />
+        <EdgeIndicator itemType="first" orient="left" edgeAt="left" yAccessor={ema20.accessor()} fill={ema20.fill()} />
+        <EdgeIndicator itemType="first" orient="left" edgeAt="left" yAccessor={ema50.accessor()} fill={ema50.fill()} />
+        <EdgeIndicator
+          itemType="first"
+          orient="left"
+          edgeAt="left"
+          yAccessor={(d: any) => d.close}
+          fill={(d: any) => (d.close > d.open ? '#6BA583' : '#FF0000')}
+        />
+
+        <MouseCoordinateX at="top" orient="top" displayFormat={timeFormat('%Y-%m-%d')} />
+        <MouseCoordinateX at="bottom" orient="bottom" displayFormat={timeFormat('%Y-%m-%d')} />
+        <MouseCoordinateY at="right" orient="right" displayFormat={format('.2f')} />
+        <MouseCoordinateY at="left" orient="left" displayFormat={format('.2f')} />
+
+        <OHLCTooltip origin={[-40, -65]} />
+        <MovingAverageTooltip
+          onClick={(e: any) => console.log(e)}
+          origin={[-38, 15]}
+          options={[
+            {
+              yAccessor: ema20.accessor(),
+              type: ema20.type(),
+              stroke: ema20.stroke(),
+              windowSize: ema20.options().windowSize
+            },
+            {
+              yAccessor: ema50.accessor(),
+              type: ema50.type(),
+              stroke: ema50.stroke(),
+              windowSize: ema50.options().windowSize
+            }
+          ]}
+        />
       </Chart>
       <Chart id={2} height={150} yExtents={(d: any) => d.volume} origin={(w: any, h: any) => [0, h - 350]}>
         <YAxis axisAt="left" orient="left" ticks={5} tickFormat={format('.2s')} />
