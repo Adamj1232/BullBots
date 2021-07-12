@@ -25,6 +25,8 @@ import {
   // @ts-ignore
 } from 'react-stockcharts/lib/coordinates';
 // @ts-ignore
+import { LabelAnnotation, Label, Annotate } from 'react-stockcharts/lib/annotation';
+// @ts-ignore
 import { discontinuousTimeScaleProvider } from 'react-stockcharts/lib/scale';
 // @ts-ignore
 import { OHLCTooltip, MovingAverageTooltip, SingleValueTooltip } from 'react-stockcharts/lib/tooltip';
@@ -41,6 +43,22 @@ const ChartView = (props: any) => {
   const width = 1200;
   const ratio = 2;
   const type = 'hybrid';
+  const annotationProps = {
+    fontFamily: 'Font Awesome 5 Free',
+    fontSize: 25,
+    fill: 'green',
+    opacity: 1,
+    // @ts-ignore
+    text: 'BUY',
+    y: ({ yScale }: any) => {
+      console.log(yScale.range());
+      return yScale.range()[0];
+    },
+    onClick: console.log.bind(console),
+    tooltip: 'Buy now sucka!'
+    // tooltip: (d: any) => timeFormat('%B')(d.date)
+    // onMouseOver: console.log.bind(console),
+  };
 
   const ema20 = ema()
     .id(0)
@@ -145,6 +163,11 @@ const ChartView = (props: any) => {
         <MouseCoordinateY at="left" orient="left" displayFormat={format('.2f')} />
 
         <OHLCTooltip origin={[-40, -65]} />
+        <Annotate
+          with={LabelAnnotation}
+          when={(d: any) => d.date.getDate() === 1 /* some condition */}
+          usingProps={annotationProps}
+        />
         <MovingAverageTooltip
           onClick={(e: any) => console.log(e)}
           origin={[-38, 15]}

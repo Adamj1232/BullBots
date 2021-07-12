@@ -19,8 +19,12 @@
     }
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.3",
     "@material-ui/core": "^4.11.4",
+    "@material-ui/data-grid": "^4.0.0-alpha.33",
     "@material-ui/icons": "^4.11.2",
+    "@material-ui/styles": "^4.11.4",
+    "@material-ui/x-grid": "^4.0.0-alpha.33",
     "@types/d3-format": "^2.0.0",
     "@types/d3-scale": "^3.3.0",
     "@types/d3-shape": "^2.1.0",
@@ -29,12 +33,14 @@
     "d3-dsv": "^2.0.0",
     "i18next": "^19.8.9",
     "inversify-hooks": "^2.1.6",
+    "moralis": "^0.0.28",
     "node-sass": "^5.0.0",
     "react": "^17.0.1",
     "react-bootstrap": "^1.5.0",
     "react-dom": "^17.0.1",
     "react-hookstore": "^1.5.1",
     "react-i18next": "^11.8.7",
+    "react-moralis": "^0.1.9",
     "react-router-dom": "^5.2.0",
     "react-stockcharts": "^0.7.8",
     "reflect-metadata": "^0.1.13"
